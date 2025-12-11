@@ -1,0 +1,120 @@
+# Project Configuration
+project:
+  name: "Code Summarization and Generation"
+  author: "Laiba Akram"
+  version: "1.0.0"
+
+# Data Collection
+data:
+  languages:
+    - Python
+    - Java
+    - JavaScript
+    - Rust
+
+  sources:
+    codesearchnet: "https://github.com/github/CodeSearchNet"
+    github_api: "https://api.github.com"
+
+  sampling:
+    min_lines: 5
+    max_lines: 200
+    target_functions_per_lang: 5000
+    exclude_patterns:
+      - "**/test/**"
+      - "**/tests/**"
+      - "**/*_test.*"
+      - "**/*test*"
+      - "**/node_modules/**"
+      - "**/target/**"
+      - "**/build/**"
+      - "**/dist/**"
+
+# Feature Engineering
+features:
+  ast_metrics:
+    - ast_node_count
+    - ast_depth
+    - ast_leaf_count
+    - ast_branching_factor_avg
+    - ast_distinct_node_types
+
+  complexity_metrics:
+    - cc_mccabe
+    - halstead_volume
+    - halstead_difficulty
+    - halstead_effort
+
+  pl_features:
+    - is_static_typed
+    - memory_model
+    - paradigm
+    - concurrency_model
+
+# Model Configuration
+models:
+  clustering:
+    kmeans:
+      n_clusters: [3, 4, 5, 6, 7, 8]
+      random_state: 42
+      max_iter: 300
+
+    dbscan:
+      eps: [0.3, 0.5, 0.7]
+      min_samples: [5, 10, 15]
+
+    hierarchical:
+      n_clusters: [3, 4, 5, 6, 7, 8]
+      linkage: ['ward', 'complete', 'average']
+
+  prediction:
+    random_forest:
+      n_estimators: [100, 200, 300]
+      max_depth: [10, 20, 30, null]
+      min_samples_split: [2, 5, 10]
+      random_state: 42
+
+    lstm:
+      hidden_size: 256
+      num_layers: 2
+      dropout: 0.3
+      learning_rate: 0.001
+      batch_size: 32
+      epochs: 50
+
+    transformer:
+      model_name: "microsoft/codebert-base"
+      learning_rate: 2e-5
+      batch_size: 16
+      epochs: 10
+
+# Evaluation
+evaluation:
+  clustering_metrics:
+    - silhouette_score
+    - davies_bouldin_score
+    - calinski_harabasz_score
+
+  prediction_metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+
+  test_size: 0.2
+  cv_folds: 5
+
+# Visualization
+visualization:
+  tsne:
+    perplexity: 30
+    n_iter: 1000
+    random_state: 42
+
+  umap:
+    n_neighbors: 15
+    min_dist: 0.1
+    random_state: 42
+
+  figure_size: [12, 8]
+  dpi: 300

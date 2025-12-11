@@ -1,0 +1,36 @@
+================================================================================
+PHASE 3: MODEL IMPLEMENTATION & EXPERIMENTATION
+Code Summarization and Generation Project
+================================================================================
+
+Author: Laiba Akram
+Student ID: 42943
+Course: BSCS-7A - Theory of Programming Languages
+
+CLUSTERING RESULTS:
+----------------------------------------
+
+KMEANS:
+  Best Parameters: {'n_clusters': 3}
+  Silhouette Score: 0.3347
+
+HIERARCHICAL:
+  Best Parameters: {'n_clusters': 3, 'linkage': 'ward'}
+  Silhouette Score: 0.3489
+
+
+PREDICTION RESULTS:
+----------------------------------------
+        Model  Accuracy  Precision  Recall  F1-Score
+Random Forest       1.0        1.0     1.0       1.0
+         LSTM       1.0        1.0     1.0       1.0
+
+
+================================================================================
+HYPOTHESIS TESTING:
+----------------------------------------
+H1: Statically typed, memory-safe languages exhibit higher
+    syntax complexity than dynamically typed languages.
+
+See clustering visualizations and detailed analysis in notebooks.
+================================================================================
